@@ -45,6 +45,11 @@ class RegitrationType extends ApplicationType
                 $this->getConfiguration("Password", "Votre password")
                 )
             ->add(
+                'passwordConfirm',
+                PasswordType::class,
+                $this->getConfiguration("Confirmation du password", "Veuillez confirmer votre password")
+                )
+            ->add(
                 'introduction',
                 TextType::class,
                 $this->getConfiguration("Introduction", "Une brève introduction de vous même")
