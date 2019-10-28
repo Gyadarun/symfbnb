@@ -44,18 +44,21 @@
     <!-- Carroussel end -->
     </div>
     <div class="col">
+      {% set a = ad.author %}
       <div class="row">
         <div class="col-4">
-          <img src="http://placehold.it/64x64" alt="avatar">
+          <a href="{{path('user_show', {'slug': a.slug})}}">
+          <img src={{a.picture}} class="avatar avatar-medium" alt="avatar de {{a.fullName}}">
+          </a>
         </div>
         <div class="col">
-          <h3>Joseph Dupont</h3>
-          <span class="badge badge-primary">3 annonces</span>
+          <a href="{{path('user_show', {'slug': a.slug})}}">
+          <h3>{{a.fullName}}</h3>
+          </a>
+          <span class="badge badge-primary">{{a.ads | length}} annonces</span>
         </div>
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium eos excepturi dignissimos fugiat voluptates veritatis architecto, enim cumque debitis.</p>
-      <p>Tenetur autem eum maxime tempora quaerat provident possimus, repellendus, illum tempore sequi deleniti minima repudiandae sit molestias. Ut, quidem soluta?</p>
-      <p>Modi quos impedit vel illo optio nemo illum voluptatem veritatis quidem dolore quod suscipit, placeat aut quaerat animi assumenda et.</p>
+      <p>{{a.description | raw}}</p>
     </div>
   </div>
 </div>

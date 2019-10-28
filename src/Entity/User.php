@@ -83,6 +83,10 @@ class User implements UserInterface
      */
     private $ads;
 
+    public function getFullName() {
+        return $this->lastName . " " . $this->firstName;
+    }
+
      /**
      * Initialize Slug
      * 

@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
             // randomize genre
             $genre = $faker->randomElement($genres);
             // avatar from radomeuser.me
-            $picture = 'https://randomuser.me/api/portaits/';
+            $picture = 'https://randomuser.me/api/portraits/';
             $pictureId = $faker->numberBetween(1,99) . '.jpg';
             // full url generation for avatar
             $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId;
