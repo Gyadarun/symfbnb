@@ -16,6 +16,7 @@ use Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AccountController extends AbstractController
 {
@@ -85,6 +86,7 @@ class AccountController extends AbstractController
      * Edit profile form
      *
      * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
@@ -113,7 +115,8 @@ class AccountController extends AbstractController
      * Update a user password
      *
      *@Route("/account/update-password", name="account_password")
-     * 
+     *@IsGranted("ROLE_USER") 
+     *
      * @return Response
      */
     public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
@@ -152,6 +155,7 @@ class AccountController extends AbstractController
      * Show a user profile
      * 
      *@Route("/account", name="account_index")
+     *@IsGranted("ROLE_USER")
      *
      * @return Response
      */
