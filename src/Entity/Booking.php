@@ -34,12 +34,14 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention, la date d'arrivée doit être au bon format")
+     * @Assert\GreaterThan("today", message="La date d'arrivée doit être ultérieure à celle d'aujourd'hui")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention, la date de départ doit être au bon format")
+     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ ne peut être inférieure à la date d'arrivée")
      */
     private $endDate;
 
@@ -83,7 +85,7 @@ class Booking
     public function isBookableDates()
     {
         // get not available dates from ad entity
-        $notAvailableDays = $this->ad->getNotAvaiableDays();
+        $notAvailableDays = $this->ad->getNotAvailableDays();
         // date comparison
         $bookingDays = $this->getDays();
 

@@ -107,7 +107,7 @@ class Ad
      *
      * @return array
      */
-    public function getNotAvaiableDays()
+    public function getNotAvailableDays()
     {
         $notAvailableDays = [];
 
