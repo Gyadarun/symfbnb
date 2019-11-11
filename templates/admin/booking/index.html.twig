@@ -42,7 +42,7 @@
             </tbody>
         </table>
 
-        {% include "admin/partials/pagination.html.twig" with {'route': 'admin_booking_index'} %}
+        {{pagination.display()}}
 
     </div>
 {% endblock %}
