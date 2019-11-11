@@ -1,0 +1,22 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Editer un commentaire{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="my-5">Modifer le commenaire n° {{comment.id}}</h1>
+
+    <div class="alert alert-info">
+      <p>Annonce du commentaire : {{comment.ad.title}}</p>
+      <p>Auteur : {{comment.author.fullName}}</p>
+    </div>
+
+    {{form_start(form)}}
+
+    {{form_widget(form)}}
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+    {{form_end(form)}}
+  </div>
+{% endblock %}
