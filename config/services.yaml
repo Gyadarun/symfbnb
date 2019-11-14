@@ -28,3 +28,5 @@ services:
     App\Service\PaginationService:
         arguments:
             $templatePath: 'admin/partials/pagination.html.twig'
+
+    App\Service\StatsService:
