@@ -48,9 +48,9 @@
     <!-- Carroussel end -->
     <hr>
     {% if ad.comments|length > 0 %}
-    <h2>Commentaires de nos voyageurs :</h2>
+    <h2 class="my-3">Commentaires de nos voyageurs :</h2>
 
-    <div class="alert alert-info">
+    <div class="alert alert-primary">
       <h4 class="alert-heading text-center">
         <div class="row align-items-center">
           <div class="col">
@@ -65,7 +65,7 @@
     </div>
 
       {% for comment in ad.comments %}
-        <div class="bg-light rounded">
+        <div class="alert alert-info rounded">
           {{comment.author.fullName}} a dit :
           <blockquote>{{comment.content}}</blockquote>
           <strong>Sa note :</strong> 

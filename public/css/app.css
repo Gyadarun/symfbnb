@@ -13,6 +13,10 @@ div.ad-title h1, div.ad-title p {
   text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
 
+div.bg-light{
+  height: 600px;
+}
+
 .avatar {
   max-width: 128px;
   max-height: 128px;

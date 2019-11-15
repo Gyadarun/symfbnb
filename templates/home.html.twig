@@ -14,14 +14,14 @@
     </p>  
   </div>
 
-  <h2 class="h1 my-5">Nos appartements stars</h2>
+  <h2 class="h1 my-5 text-center">Nos appartements stars</h2>
     <div class="row">
       {% for data in ads %}
         {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
       {% endfor %}
     </div> <!-- end of apartments row -->
 
-  <h2 class="h1 my-5">Nos propriétaires stars</h2> 
+  <h2 class="h1 my-5 text-center">Nos propriétaires stars</h2> 
     <div class="row">
       {% for data in users %}
       <div class="col">
