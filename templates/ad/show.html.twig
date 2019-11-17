@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="ad-title" style="background-color: black"/>
+<div class="ad-title" style="background-image: url({{ad.coverImage}})">
   <div class="container">
     <h1>{{ad.title}}</h1>
     <p>{{ad.introduction}}</p>
@@ -13,7 +13,11 @@
     <a href="{{path('booking_create', {'slug': ad.slug})}}" class="btn btn-primary">Réserver</a>
     {% if app.user == ad.author %}
     <a href="{{path('ads_edit', {'slug': ad.slug})}}" class="btn btn-secondary">Modifier mon annonce</a>
-    <a href="{{path('ads_delete', {'slug': ad.slug})}}" class="btn btn-danger"  onclick="return confirm(`Etes vous sûr de vouloir supprimer l'annonce {{ad.title}} ?`)">Supprimer mon annonce</a>
+    <form method="post" action="{{path('ads_delete', {'slug': ad.slug})}}">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden" name="_token" value="{{csrf_token('delete' ~ ad.id)}}">
+      <button class="btn btn-danger mt-3" onclick="return confirm(`Etes vous sûr de vouloir supprimer l'annonce {{ad.title}} ?`)">Supprimer mon annonce</button>
+    </form>
     {% endif %}
   </div>
 </div>
