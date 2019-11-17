@@ -15,8 +15,6 @@
     <a href="{{path('ads_edit', {'slug': ad.slug})}}" class="btn btn-secondary">Modifier mon annonce</a>
 
     <form method="post" action="{{path('ads_delete', {'slug': ad.slug})}}">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="hidden" name="_token" value="{{csrf_token('delete' ~ ad.id)}}">
       <button class="btn btn-danger mt-2" onclick="return confirm(`Etes vous sûr de vouloir supprimer l'annonce {{ad.title}} ?`)">Supprimer mon annonce</button>
     </form>
     
