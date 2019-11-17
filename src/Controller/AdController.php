@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\AdSearch;
 use App\Form\AdType;
 use App\Entity\Image;
+use App\Form\AdSearchType;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,12 +21,18 @@ class AdController extends AbstractController
     /**
      * @Route("/ads", name="ads_index")
      */
-    public function index(AdRepository $repo)
+    public function index(AdRepository $repo, Request $request)
     {   
-        $ads = $repo->findAll();
+        $search = new AdSearch();
 
+        $form = $this->createForm(AdSearchType::class, $search);
+        $form->handleRequest($request);
+        
+        $ads = $repo->findByQuery($search);
+        
         return $this->render('ad/index.html.twig', [
             'ads' => $ads,
+            'form' => $form->createView()
         ]);
     }
 

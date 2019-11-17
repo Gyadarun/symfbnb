@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Ad;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use App\Entity\AdSearch;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Ad|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,6 +32,30 @@ class AdRepository extends ServiceEntityRepository
                     ->setMaxResults($limit)
                     ->getQuery()
                     ->getResult();
+    }
+
+
+    public function findByQuery(AdSearch $search)
+    {   
+        $query = $this->findQuery();
+        
+        if($search->getMinPrice()) {
+            $query = $query->setParameter('minprice', $search->getMinPrice())
+                           ->andWhere('a.price >= :minprice');
+        }
+        if($search->getMaxPrice()) {
+            $query = $query->setParameter('maxprice', $search->getMaxPrice())
+                           ->andWhere('a.price <= :maxprice');
+        }
+        
+        return $query->getQuery()->getResult();
+    }
+
+    private function findQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+                    ->addOrderBy('a.price');
+
     }
     // /**
     //  * @return Ad[] Returns an array of Ad objects
