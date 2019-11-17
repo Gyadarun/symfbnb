@@ -134,12 +134,14 @@ class AdController extends AbstractController
      * @param Ad $ad
      * @param ObjectManager $manager
      */
-    public function delete(Ad $ad, ObjectManager $manager)
-    {
-        $manager->remove($ad);
-        $manager->flush();
+    public function delete(Ad $ad, ObjectManager $manager, Request $request)
+    {   
+        if($this->isCsrfTokenValid('delete' . $ad->getId(), $request->get('_token'))){
+            $manager->remove($ad);
+            $manager->flush();
 
-        $this->addFlash('success', "L'annonce {$ad->getTitle()} a bien été supprimée !");
+            $this->addFlash('success', "L'annonce {$ad->getTitle()} a bien été supprimée !");
+        }
         return $this->redirectToRoute("ads_index");
     }
 }

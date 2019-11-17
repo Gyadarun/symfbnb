@@ -62,7 +62,7 @@ class AdminAdController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(Ad $ad, ObjectManager $manager)
+    public function delete(Ad $ad, ObjectManager $manager, Request $request)
     {   
         if(count($ad->getBookings()) > 0) {
             $this->addFlash(
@@ -70,13 +70,16 @@ class AdminAdController extends AbstractController
                 "L'annonce {$ad->getTitle()} possède des réservations, vous ne pouvez pas la supprimer"
             );
         } else {
-            $manager->remove($ad);
-            $manager->flush();
+            if($this->isCsrfTokenValid('delete' . $ad->getId(), $request->get('_token'))) {
+                $manager->remove($ad);
+                $manager->flush();
     
-            $this->addFlash(
+                $this->addFlash(
                 'success',
                 "L'annonce {$ad->getTitle()} a bien été supprimée"
             ); 
+            }
+            
         }
     
         return $this->redirectToRoute('admin_ads_index');
