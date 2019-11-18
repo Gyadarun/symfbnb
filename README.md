@@ -1,5 +1,7 @@
 # symfbnb, just a humble symfony project to learn the framework
 
+- Visible at https://symfbnb.herokuapp.com/ (Disable adblocks, it may blocks some parts)
+
 # If you want to try it :
 
  1 - Create a database      
